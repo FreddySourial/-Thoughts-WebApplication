@@ -5,17 +5,17 @@ function startTime() {
     var s=today.getSeconds();
     var ampm = "";
     m = checkTime(m);
-    w=0; 
+
     if (h > 12) {
     	h = h - 12;
-    	ampm = " PM";
+    	ampm = " AM";
     } else if (h == 12){
         h = 12;
-    	ampm = " AM";
+    	ampm = " PM";
     } else if (h < 12){
-        ampm = " AM";
+        ampm = " PM";
     } else {
-        ampm = "PM";
+        ampm = "AM";
     };
   
   if(h==0) {
@@ -31,19 +31,14 @@ function checkTime(i) {
     return i;
 }
 
+question = 0;
 function genQuote() {
-  
-  if (w>1){
-    return;
-  } else {
+  if (question==0){
   var randNum = Math.floor(Math.random() * 8) + 1;
   document.getElementById('quote').innerHTML = quotes[randNum];
-  var tweetQuote = quotes[randNum].split(' ').join('%20');
-  tweetQuote = tweetQuote.split('<br>').join('');
-  tweetQuote = "https://twitter.com/intent/tweet?text=" + tweetQuote.split('"').join('')
-  // $('.twitter-share-button').attr('href', tweetQuote);
-  w++;
-  
+  question++; 
+}else{
+  return;
 }
 }
 

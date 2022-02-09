@@ -8,14 +8,14 @@ function startTime() {
 
     if (h > 12) {
     	h = h - 12;
-    	ampm = " AM";
+    	ampm = " PM";
     } else if (h == 12){
         h = 12;
     	ampm = " PM";
     } else if (h < 12){
-        ampm = " PM";
+        ampm = " AM";
     } else {
-        ampm = "AM";
+        ampm = "PM";
     };
   
   if(h==0) {
@@ -31,14 +31,23 @@ function checkTime(i) {
     return i;
 }
 
-question = 0;
+
+var d = new Date();
+var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+document.getElementById("date");
+console.log (d.getDay());
+var question = d.getDay();
+console.log(question)
+
+
 function genQuote() {
-  if (question==0){
+  if (question==d.getDay()){
   var randNum = Math.floor(Math.random() * 8) + 1;
   document.getElementById('quote').innerHTML = quotes[randNum];
   question++; 
+  console.log (question);
 }else{
-  return;
+  alert ('Nice try sir, you already got your question of the day :) \nCome back tomorrow for a new question ');
 }
 }
 
@@ -50,4 +59,5 @@ function startDate() {
   var d = new Date();
   var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   document.getElementById("date").innerHTML = days[d.getDay()]+" | "+[d.getMonth()+1]+"/"+d.getDate()+"/"+d.getFullYear();
+  
 }
